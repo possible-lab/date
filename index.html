@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>14 Şubat 💌</title>
+  <meta name="description" content="14 Şubat için küçük bir sürpriz." />
+  <style>
+    :root{
+      --bg1:#0b0b12; --bg2:#14061a; --card:#121223cc;
+      --txt:#f7f3ff; --muted:#cdbfe3;
+      --accent:#ff3b7a; --accent2:#8a5cff;
+      --ok:#2ecc71; --no:#ff5b5b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; color:var(--txt);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(255,59,122,.35), transparent 60%),
+        radial-gradient(900px 500px at 80% 90%, rgba(138,92,255,.35), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    .wrap{
+      max-width:920px; margin:0 auto; padding:28px 18px 60px;
+      display:flex; align-items:center; justify-content:center;
+      min-height:100vh;
+    }
+    .card{
+      width:100%;
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border-radius:22px;
+      padding:26px 18px;
+      position:relative;
+      backdrop-filter: blur(10px);
+    }
+    .top{
+      display:flex; gap:18px; align-items:center; justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted); font-size:13px;
+    }
+    h1{
+      margin:14px 0 6px; font-size: clamp(28px, 4vw, 44px);
+      letter-spacing:-.02em;
+    }
+    .sub{
+      margin:0 0 18px; color:var(--muted);
+      font-size: 15px; line-height:1.5;
+    }
+    .grid{
+      display:grid; grid-template-columns: 1.2fr .8fr;
+      gap:16px; margin-top:18px;
+    }
+    @media (max-width:820px){
+      .grid{grid-template-columns:1fr}
+    }
+    .panel{
+      border-radius:18px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      padding:16px;
+    }
+    .line{
+      display:flex; gap:10px; align-items:center; margin:10px 0;
+      color:var(--muted); font-size:14px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(255,59,122,.35);
+      flex:0 0 auto;
+    }
+    .question{
+      margin:14px 0 10px;
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight:700;
+    }
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;
+      position:relative;
+      min-height:54px;
+      align-items:center;
+    }
+    button{
+      border:0; cursor:pointer;
+      padding:14px 18px; border-radius:14px;
+      font-weight:700; font-size:15px;
+      transition: transform .12s ease, box-shadow .12s ease, opacity .2s ease;
+      user-select:none;
+    }
+    button:active{transform: translateY(1px) scale(.99)}
+    .yes{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:white;
+      box-shadow: 0 14px 30px rgba(255,59,122,.22);
+    }
+    .yes:hover{transform: translateY(-1px)}
+    .no{
+      background: rgba(255,255,255,.08);
+      color: var(--txt);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .no:hover{opacity:.95}
+    .result{
+      margin-top:14px;
+      border-radius:16px;
+      padding:14px 14px;
+      border:1px dashed rgba(255,255,255,.18);
+      color:var(--muted);
+      display:none;
+    }
+    .result strong{color:var(--txt)}
+    .footer{
+      margin-top:18px; color:rgba(255,255,255,.45);
+      font-size:12px;
+    }
+    /* floating hearts */
+    .heart{
+      position:absolute; left:var(--x); bottom:-40px;
+      font-size: var(--s);
+      opacity:.0;
+      animation: floatUp var(--d) ease-in forwards;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.35));
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      0%{transform: translateY(0) scale(.9) rotate(-6deg); opacity:0}
+      10%{opacity:.95}
+      100%{transform: translateY(-110vh) scale(1.25) rotate(10deg); opacity:0}
+    }
+    .pill{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;
+    }
+    .pill span{
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted); font-size:13px;
+    }
+    .tiny{
+      font-size:12px; color:rgba(255,255,255,.55);
+      margin-top:10px; line-height:1.45;
+    }
+    input, textarea{
+      width:100%; background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--txt); border-radius:12px;
+      padding:12px 12px; outline:none;
+      font-size:14px;
+    }
+    textarea{min-height:92px; resize:vertical}
+    label{display:block; margin:10px 0 6px; color:var(--muted); font-size:13px}
+    .minirow{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width:520px){ .minirow{grid-template-columns:1fr} }
+    .copy{
+      margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .copy button{
+      padding:12px 14px; border-radius:12px; font-weight:700;
+      background: rgba(255,255,255,.08);
+      color:var(--txt); border:1px solid rgba(255,255,255,.12);
+    }
+    .oktoast{
+      display:none;
+      margin-top:8px; color:#bff7d1; font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" id="card">
+      <div class="top">
+        <div class="badge">💌 14 Şubat Sürprizi</div>
+        <div class="badge" id="today"></div>
+      </div>
+
+      <h1 id="title">Benimle date’e çıkar mısın?</h1>
+      <p class="sub" id="subtitle">
+        Bir akşam, bir plan, biraz romantizm. Cevabını merak ediyorum 🙂
+      </p>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="question" id="question">14 Şubat’ta birlikte güzel bir şey yapalım mı?</div>
+
+          <div class="cta" id="cta">
+            <button class="yes" id="yesBtn">Evet 💖</button>
+            <button class="no" id="noBtn">Hayır 🙈</button>
+          </div>
+
+          <div class="result" id="resultBox">
+            <div id="resultText"></div>
+            <div class="pill" id="pills"></div>
+            <div class="tiny" id="tinyNote"></div>
+          </div>
+
+          <div class="footer">Not: Bu sayfa sadece küçük bir sürpriz. 😊</div>
+        </div>
+
+        <div class="panel">
+          <div class="badge">Kişiselleştir</div>
+
+          <label>Sevgilinin adı</label>
+          <input id="toName" placeholder="Örn: Elif" />
+
+          <div class="minirow">
+            <div>
+              <label>Saat</label>
+              <input id="time" placeholder="Örn: 19:30" />
+            </div>
+            <div>
+              <label>Yer</label>
+              <input id="place" placeholder="Örn: Moda Sahil" />
+            </div>
+          </div>
+
+          <label>Minik mesajın</label>
+          <textarea id="note" placeholder="Örn: Seni çok seviyorum. Bu akşamı birlikte güzelleştirelim."></textarea>
+
+          <label>İmza</label>
+          <input id="fromName" placeholder="Örn: Hasan" />
+
+          <div class="copy">
+            <button id="applyBtn">Uygula</button>
+            <button id="copyBtn">Linki kopyala</button>
+          </div>
+          <div class="oktoast" id="toast">Kopyalandı ✅</div>
+
+          <div class="tiny">
+            “Uygula” ile sayfayı özelleştirir. “Linki kopyala” ise URL’ye bu bilgileri ekler (yayınladıktan sonra linke tıklayınca aynı görünür).
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // --- helpers
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => (s || "").toString();
+  const params = new URLSearchParams(location.search);
+
+  function setText(id, text){ $(id).textContent = text; }
+
+  function fmtDateTR(d){
+    return d.toLocaleDateString("tr-TR", { day:"2-digit", month:"long", year:"numeric" });
+  }
+
+  // show date
+  const now = new Date();
+  setText("today", "📅 " + fmtDateTR(now));
+
+  // defaults (can be overwritten by URL params)
+  const state = {
+    to: params.get("to") || "",
+    time: params.get("time") || "19:30",
+    place: params.get("place") || "Birlikte seçelim",
+    note: params.get("note") || "Seninle aynı masada gülmek istiyorum.",
+    from: params.get("from") || ""
+  };
+
+  // put into inputs
+  $("toName").value = state.to;
+  $("time").value = state.time;
+  $("place").value = state.place;
+  $("note").value = state.note;
+  $("fromName").value = state.from;
+
+  function apply(){
+    const to = esc($("toName").value).trim();
+    const time = esc($("time").value).trim() || "19:30";
+    const place = esc($("place").value).trim() || "Birlikte seçelim";
+    const note = esc($("note").value).trim();
+    const from = esc($("fromName").value).trim();
+
+    // Update headline/subtitle
+    setText("title", to ? `${to}, benimle date’e çıkar mısın?` : "Benimle date’e çıkar mısın?");
+    setText("subtitle", note || "Bir akşam, bir plan, biraz romantizm. Cevabını merak ediyorum 🙂");
+    setText("question", "14 Şubat’ta birlikte güzel bir şey yapalım mı?");
+
+    state.to = to; state.time = time; state.place = place; state.note = note; state.from = from;
+  }
+
+  $("applyBtn").addEventListener("click", apply);
+  apply();
+
+  // "No" button runs away a bit 😄
+  const noBtn = $("noBtn");
+  const cta = $("cta");
+
+  function moveNo(){
+    const rect = cta.getBoundingClientRect();
+    const maxX = Math.max(10, rect.width - noBtn.offsetWidth - 10);
+    const maxY = 0; // keep on same line-ish
+    const x = Math.floor(Math.random() * maxX);
+    noBtn.style.position = "relative";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = maxY + "px";
+  }
+
+  let noCount = 0;
+  noBtn.addEventListener("mouseenter", () => { noCount++; if(noCount <= 8) moveNo(); });
+  noBtn.addEventListener("click", () => { noCount++; if(noCount <= 10) moveNo(); else showNo(); });
+
+  // result
+  const resultBox = $("resultBox");
+  const resultText = $("resultText");
+  const pills = $("pills");
+  const tinyNote = $("tinyNote");
+
+  function showResult(html, tags, extra){
+    resultBox.style.display = "block";
+    resultText.innerHTML = html;
+    pills.innerHTML = "";
+    (tags || []).forEach(t => {
+      const s = document.createElement("span");
+      s.textContent = t;
+      pills.appendChild(s);
+    });
+    tinyNote.textContent = extra || "";
+    resultBox.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  function heartsBurst(n=18){
+    for(let i=0;i<n;i++){
+      const h = document.createElement("div");
+      h.className = "heart";
+      const hearts = ["💖","💘","💝","❤️","💕","💗"];
+      h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+      h.style.setProperty("--x", Math.floor(Math.random()*100) + "vw");
+      h.style.setProperty("--d", (3.2 + Math.random()*2.2) + "s");
+      h.style.setProperty("--s", (16 + Math.random()*22) + "px");
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 6000);
+    }
+  }
+
+  function showYes(){
+    const to = state.to || "Aşkım";
+    const from = state.from ? `— ${state.from}` : "";
+    const msg = `
+      <strong>${to}</strong> dedi ki: <strong>EVET 💖</strong><br/>
+      <span style="color:rgba(255,255,255,.70)">O zaman</span> <strong>${state.time}</strong> <span style="color:rgba(255,255,255,.70)">gibi</span> <strong>${state.place}</strong>?
+      <div style="margin-top:10px;color:rgba(255,255,255,.75)">${state.note ? state.note : ""}</div>
+      <div style="margin-top:10px;color:rgba(255,255,255,.85)"><strong>İyi ki varsın.</strong> ${from}</div>
+    `;
+    showResult(msg, ["📍 " + state.place, "⏰ " + state.time, "💌 14 Şubat"], "İstersen ekran görüntüsü alıp saklayabilirsin.");
+    heartsBurst(26);
+    $("yesBtn").disabled = true;
+    $("noBtn").disabled = true;
+    $("yesBtn").style.opacity = .65;
+    $("noBtn").style.opacity = .65;
+  }
+
+  function showNo(){
+    const to = state.to || "Aşkım";
+    const msg = `
+      <strong>${to}</strong> için küçük bir not: <strong>Hayır</strong> da bir cevap 🙂<br/>
+      <span style="color:rgba(255,255,255,.75)">Ama ben yine de seni çok seviyorum. Planı birlikte başka güne taşırız.</span>
+    `;
+    showResult(msg, ["💬 Başka gün", "☕ Kahve?", "🍿 Film?"], "Tamam dediğinde tekrar sorarım 😄");
+    heartsBurst(10);
+  }
+
+  $("yesBtn").addEventListener("click", showYes);
+
+  // copy link with params
+ 
