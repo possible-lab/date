@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>14 Şubat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 body{
   margin:0;
@@ -14,67 +15,92 @@ body{
   background:#0f0f14;
   color:#fff;
   font-family:Arial, sans-serif;
+  overflow:hidden;
 }
+
 .box{
   background:#1c1c28;
   padding:30px;
-  border-radius:16px;
+  border-radius:18px;
   width:320px;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
-input,textarea{
-  width:100%;
-  margin:6px 0;
-  padding:8px;
-  border-radius:8px;
-  border:none;
-}
+
 button{
-  margin-top:10px;
-  padding:10px 18px;
+  margin:10px;
+  padding:12px 20px;
   border:none;
   border-radius:10px;
-  font-size:15px;
+  font-size:16px;
   cursor:pointer;
 }
+
 .yes{background:#ff3b7a;color:#fff;}
-.no{background:#444;color:#fff;}
+.no{background:#444;color:#fff; position:absolute;}
+
+#result{margin-top:15px}
+
+/* Kalpler */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:24px;
+  animation: floatUp 4s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
+}
 </style>
 </head>
+
 <body>
 
 <div class="box">
-  <h2 id="title">Benimle date’e çıkar mısın?</h2>
-  <p id="text">14 Şubat’ta birlikte güzel bir şey yapalım mı?</p>
+  <h2 id="title">Benimle date’e çıkar mısın? 💌</h2>
+  <p>14 Şubat’ta birlikte güzel bir şey yapalım mı?</p>
 
-  <input id="name" placeholder="İsmin">
-  <button onclick="apply()">Uygula</button>
-
-  <div style="margin-top:15px">
+  <div style="position:relative;height:80px">
     <button class="yes" onclick="yes()">Evet 💖</button>
-    <button class="no" onclick="no()">Hayır 🙈</button>
+    <button class="no" id="noBtn">Hayır 🙈</button>
   </div>
 
-  <p id="result" style="margin-top:15px"></p>
+  <p id="result"></p>
 </div>
 
 <script>
-function apply(){
-  const name = document.getElementById("name").value;
-  if(name){
-    document.getElementById("title").innerText =
-      name + ", benimle date’e çıkar mısın?";
-  }
-}
+const noBtn = document.getElementById("noBtn");
 
+// Hayır butonu kaçsın
+noBtn.addEventListener("mouseenter", () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 80 - 40;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Evet'e basınca kalpler uçuşsun
 function yes(){
   document.getElementById("result").innerText =
     "Yay! 💖 O zaman 14 Şubat bizim 😍";
+
+  for(let i=0;i<25;i++){
+    createHeart();
+  }
 }
 
-function no(){
-  document.getElementById("result").innerText =
-    "Üzüldüm ama yine de seni seviyorum 🙂";
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = (16 + Math.random()*24) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),4000);
 }
 </script>
 
